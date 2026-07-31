@@ -11,3 +11,9 @@ SRC005,30,exclude,possible_table_page,自动检测到表格，需要核对原始
 SRC005,33,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
 SRC005,34,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
 SRC005,35,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
+SRC001,5,exclude,author_list,页面主要为专家和作者名单，无直接医学证据价值,confirmed
+SRC002,7,exclude,author_list,页面主要为专家和作者名单，无直接医学证据价值,confirmed
+SRC003,14,exclude,expert_list,页面主要为外审专家和利益冲突信息,confirmed
+SRC004,10,exclude,expert_list,页面主要为专家名单，无直接医学证据价值,confirmed
+SRC005,1,exclude,front_matter,预印本首页主要为作者和稿件信息，无医学正文,confirmed
+SRC005,27,exclude,supplementary_information,页面主要为附件信息，无直接医学证据价值,confirmed

@@ -1,0 +1,15 @@
+{
+    "chunk_method": "section_aware_page_spanning_v2",
+    "max_characters": 1200,
+    "overlap_characters": 120,
+    "minimum_characters": 120,
+    "repeat_section_heading": true,
+    "exclude_pending_review_pages": true,
+    "stop_at_reference_section": true,
+    "reference_headings": [
+      "参考文献",
+      "references"
+    ],
+    "manual_review_sample_size": 25,
+    "random_seed": 42
+  }

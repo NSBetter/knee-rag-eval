@@ -1,0 +1,6 @@
+﻿source_id,chunk_count,cross_page_chunk_count,minimum_chunk_characters,median_chunk_characters,mean_chunk_characters,maximum_chunk_characters
+SRC001,72,7,52,411.5,559.4,1199
+SRC002,24,3,29,305.5,482.8,1194
+SRC003,107,34,17,514,583.3,1199
+SRC004,62,23,6,1082.5,745.5,1199
+SRC005,54,26,372,1142.5,1106.8,1198
