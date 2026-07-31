@@ -1,0 +1,14 @@
+{
+    "chunk_method": "paragraph_char_window_v1",
+    "max_characters": 900,
+    "overlap_characters": 150,
+    "separator": "\n\n",
+    "exclude_pending_review_pages": true,
+    "stop_at_reference_section": true,
+    "reference_headings": [
+      "参考文献",
+      "references"
+    ],
+    "manual_review_sample_size": 20,
+    "random_seed": 42
+  }
