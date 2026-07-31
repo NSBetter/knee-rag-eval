@@ -1,0 +1,13 @@
+source_id,pdf_page_number,expected_table_present,manual_table_count,notes
+SRC001,3,TRUE,1,
+SRC001,4,TRUE,2,
+SRC001,6,TRUE,2,
+SRC001,7,TRUE,2,共7个表格，后续补充每页具体数量
+SRC002,5,TRUE,1,
+SRC003,3,TRUE,1,
+SRC004,3,TRUE,3,
+SRC004,4,TRUE,1,共4个表格，后续补充每页具体数量
+SRC005,30,FALSE,1,确认默认检测结果是否为真实表格
+SRC005,33,FALSE,1,确认默认检测结果是否为真实表格
+SRC005,34,FALSE,1,确认默认检测结果是否为真实表格
+SRC005,35,FALSE,1,确认默认检测结果是否为真实表格
