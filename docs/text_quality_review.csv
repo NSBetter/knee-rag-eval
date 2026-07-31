@@ -1,0 +1,6 @@
+source_id,sample_pages_reviewed,title_and_heading_order,body_reading_order,header_footer_noise,two_column_interleaving,table_extraction_issue,garbled_characters,recommended_action,review_notes
+SRC001,1;2;9;16,ok,severe_issue,severe,yes,severe,yes,block_extract,主要是双栏排版未能调整成正常语序问题
+SRC002,1;2;5;8,ok,severe_issue,severe,yes,severe,no,block_extract,主要是双栏排版未能调整成正常语序问题
+SRC003,1;2;10;19,ok,severe_issue,severe,yes,severe,no,block_extract,主要是双栏排版未能调整成正常语序问题
+SRC004,1;2;8;15,ok,severe_issue,severe,yes,severe,no,block_extract,主要是双栏排版未能调整成正常语序问题
+SRC005,1;2;18;35,ok,severe_issue,severe,no,severe,no,block_extract,需要删除预印本在每行的最前面标记行数的数字
