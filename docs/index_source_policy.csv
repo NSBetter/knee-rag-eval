@@ -1,0 +1,6 @@
+"source_id","index_status","version","reason"
+"SRC001","included","mvp_v1","中文核心指南，正文提取与边界验证通过"
+"SRC002","included","mvp_v1","中文诊疗规范，正文提取与边界验证通过"
+"SRC003","included","mvp_v1","中文药物共识，正文提取与边界验证通过"
+"SRC004","included","mvp_v1","中文早期膝骨关节炎指南，正文提取与边界验证通过"
+"SRC005","excluded","mvp_v1","英文预印本残留行号且段落重建质量不稳定；保留解析实验但不进入第一版索引"
