@@ -1,0 +1,6 @@
+source_id,column_order_improved,header_footer_improved,line_numbers_removed,new_ordering_errors,remaining_major_issue,usable_for_body_text,review_notes
+SRC001,yes,yes,not_applicable,no,部分单栏文本中，图注的文本会插在正文中，打断正文文本,yes,
+SRC002,yes,yes,not_applicable,no,部分单栏文本中，图注的文本会插在正文中，打断正文文本,yes,
+SRC003,yes,yes,not_applicable,no,,yes,
+SRC004,yes,yes,not_applicable,no,部分单栏文本中，图注的文本会插在正文中，打断正文文本,yes,
+SRC005,not_applicable,yes,yes,no,,yes,

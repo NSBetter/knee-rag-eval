@@ -1,0 +1,6 @@
+"source_id","layout","strip_line_numbers","remove_repeated_margins","table_policy","notes"
+"SRC001","two_column","false","true","separate_processing","中文双栏排版；存在少量异常字符"
+"SRC002","two_column","false","true","separate_processing","中文双栏排版"
+"SRC003","two_column","false","true","separate_processing","中文双栏排版"
+"SRC004","two_column","false","true","separate_processing","中文双栏排版"
+"SRC005","single_column","true","true","separate_processing","英文单栏；删除每行前的预印本行号"
