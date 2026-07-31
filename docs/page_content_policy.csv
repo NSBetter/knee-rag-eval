@@ -1,0 +1,13 @@
+source_id,pdf_page_number,chunk_policy,content_type,reason,review_status
+SRC001,3,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC001,4,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC001,6,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC001,7,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC002,5,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC003,3,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC004,3,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC004,4,exclude,table_or_figure_page,存在表格，自动结构恢复失败,confirmed
+SRC005,30,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
+SRC005,33,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
+SRC005,34,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
+SRC005,35,exclude,possible_table_page,自动检测到表格，需要核对原始PDF,confirmed
