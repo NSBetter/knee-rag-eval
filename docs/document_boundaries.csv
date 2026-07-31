@@ -1,6 +1,6 @@
-"source_id","body_start_page","body_start_marker","reference_start_page","reference_start_marker","body_end_page","notes"
-"SRC001","","","","","",""
-"SRC002","","","","","",""
-"SRC003","","","","","",""
-"SRC004","","","","","",""
-"SRC005","","","","","",""
+source_id,body_start_page,body_start_marker,reference_start_page,reference_start_marker,body_end_page,notes
+SRC001,2,概述,10,参考文献,10,
+SRC002,1,【提要】,6,执笔：,6,这份指南在正文结尾和参考文献开头的中间夹了很长一段作者信息，我把作者信息开头的marker当做参考文献的marker填写进去了
+SRC003,2,骨关节炎（osteoarthritis，OA）,13,共识工作组成员名单,13,这份指南在正文结尾和参考文献开头的中间夹了很长一段作者信息，我把作者信息开头的marker当做参考文献的marker填写进去了
+SRC004,2,膝骨关节炎（knee osteoarthritis，KOA）,9,本指南制订专家委员会名单,9,这份指南在正文结尾和参考文献开头的中间夹了很长一段作者信息，我把作者信息开头的marker当做参考文献的marker填写进去了
+SRC005,4,INTRODUCTION 1,25,Conflict of interest: ,24,我把参考文献之前的没用部分的开头作为参考文献的marker

@@ -1,0 +1,6 @@
+﻿source_id,maximum_pdf_page,body_start_page,body_end_page,reference_start_page,page_range_status,body_start_marker_status,body_start_marker_count,tail_marker_status,tail_marker_count,boundary_mode,overall_status,issues
+SRC001,16,2,10,10,valid,found_unique,1,found_unique,1,trim_tail_page_at_marker,pass,
+SRC002,8,1,6,6,valid,found_unique,1,found_unique,1,trim_tail_page_at_marker,pass,
+SRC003,19,2,13,13,valid,found_unique,1,found_unique,1,trim_tail_page_at_marker,pass,
+SRC004,15,2,9,9,valid,found_unique,1,found_unique,1,trim_tail_page_at_marker,pass,
+SRC005,35,4,24,25,valid,found_unique,1,found_unique,1,exclude_pages_after_body_end,pass,
