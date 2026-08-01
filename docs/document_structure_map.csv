@@ -1,0 +1,109 @@
+source_id,node_id,parent_id,order,node_type,level,pdf_page,marker_text,marker_occurrence,display_title,include_status,notes,extraction_mode
+SRC001,SRC001-S01,,1,section,1,2,指南制订流程和方法,1,指南制订流程和方法,excluded,,exclude
+SRC001,SRC001-S01-SS01,SRC001-S01,2,subsection,2,2,一、指南发起机构与专家组成员,1,一、指南发起机构与专家组成员,excluded,,exclude
+SRC001,SRC001-S01-SS02,SRC001-S01,3,subsection,2,2,二、指南使用者与应用的目标人群,1,二、指南使用者与应用的目标人群,excluded,,exclude
+SRC001,SRC001-S01-SS03,SRC001-S01,4,subsection,2,2,三、证据的检索,1,三、证据的检索,excluded,,exclude
+SRC001,SRC001-S01-SS04,SRC001-S01,5,subsection,2,2,四、证据的评价与分级,1,四、证据的评价与分级,excluded,本节的内容位于表1,exclude
+SRC001,SRC001-S02,,6,section,1,2,概述,1,概述,included,,auto_text
+SRC001,SRC001-S03,,7,section,1,3,分类与流行病学,1,分类与流行病学,included,,auto_text
+SRC001,SRC001-S04,,8,section,1,3,发病机制,1,发病机制,included,,auto_text
+SRC001,SRC001-S04-SS01,SRC001-S04,9,subsection,2,3,1. 衰老,1,1. 衰老,included,,auto_text
+SRC001,SRC001-S04-SS02,SRC001-S04,10,subsection,2,3,2. 肥胖,1,2. 肥胖,included,,auto_text
+SRC001,SRC001-S04-SS03,SRC001-S04,11,subsection,2,3,3. 炎症反应炎症反应,1,3. 炎症反应炎症反应,included,,auto_text
+SRC001,SRC001-S04-SS04,SRC001-S04,12,subsection,2,3,4. 其他机制,1,4. 其他机制,included,,auto_text
+SRC001,SRC001-S05,,13,section,1,4,临床表现,1,临床表现,included,本节的内容位于表2,manual_table
+SRC001,SRC001-S06,,14,section,1,4,诊断标准,1,诊断标准,included,本节的内容位于表3,manual_table
+SRC001,SRC001-S07,,15,section,1,4,诊疗流程、阶梯化治疗与临床分期,1,诊疗流程、阶梯化治疗与临床分期,included,本节的内容位于表4,manual_table
+SRC001,SRC001-S08,,16,section,1,4,治疗,3,治疗,included,,auto_text
+SRC001,SRC001-S08-SS01,SRC001-S08,17,subsection,2,4,一、治疗原则,1,一、治疗原则,included,,auto_text
+SRC001,SRC001-S08-SS01-T01,SRC001-S08-SS01,18,subsection,3,4,1. 临床前期,1,1. 临床前期,included,,auto_text
+SRC001,SRC001-S08-SS01-T02,SRC001-S08-SS01,19,subsection,3,4,2. 早期或轻度阶段,1,2. 早期或轻度阶段,included,,auto_text
+SRC001,SRC001-S08-SS01-T03,SRC001-S08-SS01,20,subsection,3,4,3. 中度阶段,1,3. 中度阶段,included,,auto_text
+SRC001,SRC001-S08-SS01-T04,SRC001-S08-SS01,21,subsection,3,5,4. 重度阶段,1,4. 重度阶段,included,,auto_text
+SRC001,SRC001-S08-SS02,SRC001-S08,22,subsection,2,5,二、药物治疗,1,二、药物治疗,included,,auto_text
+SRC001,SRC001-S08-SS02-T01,SRC001-S08-SS02,23,subsection,3,5,1. 局部外用药物,1,1. 局部外用药物,included,本节的内容包括表5,hybrid
+SRC001,SRC001-S08-SS02-T02,SRC001-S08-SS02,24,subsection,3,5,2. 全身作用药物,1,2. 全身作用药物,included,本节的内容包括表6,hybrid
+SRC001,SRC001-S08-SS03,SRC001-S08,25,subsection,2,5,三、物理治疗,1,三、物理治疗,included,本节的内容包括表7,hybrid
+SRC001,SRC001-S08-SS04,SRC001-S08,26,subsection,2,6,四、注射治疗,1,四、注射治疗,included,,auto_text
+SRC001,SRC001-S08-SS04-T01,SRC001-S08-SS04,27,subsection,3,6,1. 激素类药物注射,1,1. 激素类药物注射,included,,auto_text
+SRC001,SRC001-S08-SS04-T02,SRC001-S08-SS04,28,subsection,3,6,2. 玻璃酸钠关节内注射,1,2. 玻璃酸钠关节内注射,included,,auto_text
+SRC001,SRC001-S08-SS04-T03,SRC001-S08-SS04,29,subsection,3,7,3. 富血小板血浆注射,1,3. 富血小板血浆注射,included,,auto_text
+SRC001,SRC001-S08-SS04-T04,SRC001-S08-SS04,30,subsection,3,8,4. 臭氧关节内注射治疗,1,4. 臭氧关节内注射治疗,included,,auto_text
+SRC001,SRC001-S08-SS04-T05,SRC001-S08-SS04,31,subsection,3,8,5. 间充质干细胞关节,1,5. 间充质干细胞关节内注射治疗,included,,auto_text
+SRC001,SRC001-S08-SS05,SRC001-S08,32,subsection,2,8,五、微创介入治疗,1,五、微创介入治疗,included,,auto_text
+SRC001,SRC001-S08-SS05-T01,SRC001-S08-SS05,33,subsection,3,8,1. 射频技术,1,1. 射频技术,included,,auto_text
+SRC001,SRC001-S08-SS05-T01-N01,SRC001-S08-SS05-T01,34,subsection,4,8,(1) 射频热凝,1,(1) 射频热凝,included,,auto_text
+SRC001,SRC001-S08-SS05-T01-N02,SRC001-S08-SS05-T01,35,subsection,4,8,(2) 脉冲射频,1,(2) 脉冲射频,included,,auto_text
+SRC001,SRC001-S08-SS05-T02,SRC001-S08-SS05,36,subsection,3,8,2. 关节镜,1,2. 关节镜,included,,auto_text
+SRC001,SRC001-S08-SS05-T03,SRC001-S08-SS05,37,subsection,3,8,3. 关节腔灌洗,1,3. 关节腔灌洗,included,,auto_text
+SRC001,SRC001-S08-SS06,SRC001-S08,38,subsection,2,9,六、传统疗法,1,六、传统疗法,included,,auto_text
+SRC001,SRC001-S08-SS06-T01,SRC001-S08-SS06,39,subsection,3,9,1. 医疗练功,1,1. 医疗练功,included,,auto_text
+SRC001,SRC001-S08-SS06-T02,SRC001-S08-SS06,40,subsection,3,9,2. 按摩,1,2. 按摩、推拿、手法等治疗,included,,auto_text
+SRC001,SRC001-S08-SS06-T03,SRC001-S08-SS06,41,subsection,3,9,3. 艾灸,1,3. 艾灸、火罐治疗,included,,auto_text
+SRC001,SRC001-S08-SS06-T04,SRC001-S08-SS06,42,subsection,3,9,4. 针灸,1,4. 针灸、针刺、针刀等治疗,included,,auto_text
+SRC001,SRC001-S08-SS07,SRC001-S08,43,subsection,2,9,七、外科,1,七、外科手术治疗,included,,auto_text
+SRC001,SRC001-S08-SS07-T01,SRC001-S08-SS07,44,subsection,3,9,1. 修复,1,1. 修复性手术治疗,included,,auto_text
+SRC001,SRC001-S08-SS07-T01-N01,SRC001-S08-SS07-T01,45,subsection,4,9,(1) 关节,1,(1) 关节软骨修复术,included,,auto_text
+SRC001,SRC001-S08-SS07-T01-N02,SRC001-S08-SS07-T01,46,subsection,4,9,(2) 关节,1,(2) 关节镜清理术,included,,auto_text
+SRC001,SRC001-S08-SS07-T01-N03,SRC001-S08-SS07-T01,47,subsection,4,9,(3) 截骨术,1,(3) 截骨术,included,,auto_text
+SRC001,SRC001-S08-SS07-T01-N04,SRC001-S08-SS07-T01,48,subsection,4,9,(4) 关节,1,(4) 关节融合术,included,,auto_text
+SRC001,SRC001-S08-SS07-T02,SRC001-S08-SS07,49,subsection,3,9,2. 重建,1,2. 重建性手术治疗,included,,auto_text
+SRC001,SRC001-S08-SS08,SRC001-S08,50,subsection,2,9,八、预防,1,八、预防与康复,included,,auto_text
+SRC001,SRC001-S08-SS08-T01,SRC001-S08-SS08,51,subsection,3,9,1. 康复,1,1. 康复运动,included,,auto_text
+SRC001,SRC001-S08-SS08-T02,SRC001-S08-SS08,52,subsection,3,9,2. 使用,1,2. 使用辅助器具,included,,auto_text
+SRC001,SRC001-S08-SS08-T03,SRC001-S08-SS08,53,subsection,3,9,3. 营养,1,3. 营养调理,included,,auto_text
+SRC001,SRC001-S08-SS08-T04,SRC001-S08-SS08,54,subsection,3,10,4. 应对,1,4. 应对心理压力,included,,auto_text
+SRC003,SRC003-S01,,1,section,1,2,骨关节炎（os,1,概述,included,,auto_text
+SRC003,SRC003-S02,,2,section,1,2,共识制定,1,共识制定,excluded,,exclude
+SRC003,SRC003-S02-SS01,SRC003-S02,3,subsection,2,2,1. 共识制定,1,1. 共识制定工作组,excluded,,exclude
+SRC003,SRC003-S02-SS02,SRC003-S02,4,subsection,2,2,2. 共识注册,1,2. 共识注册与撰写,excluded,,exclude
+SRC003,SRC003-S02-SS03,SRC003-S02,5,subsection,2,2,3. 使用,1,3. 使用者与目标人群,excluded,,exclude
+SRC003,SRC003-S02-SS04,SRC003-S02,6,subsection,2,2,4. 临床,1,4. 临床问题的遴选和确定,excluded,,exclude
+SRC003,SRC003-S02-SS05,SRC003-S02,7,subsection,2,2,5. 证据,1,5. 证据检索与筛选,excluded,,exclude
+SRC003,SRC003-S02-SS06,SRC003-S02,8,subsection,2,2,6. 证据,1,6. 证据质量评价,excluded,,exclude
+SRC003,SRC003-S02-SS07,SRC003-S02,9,subsection,2,3,7. 证据,1,7. 证据分级和推荐强度标准,excluded,本节的内容位于表1,exclude
+SRC003,SRC003-S02-SS08,SRC003-S02,10,subsection,2,3,8. 推荐,1,8. 推荐意见的形成,excluded,,exclude
+SRC003,SRC003-S02-SS09,SRC003-S02,11,subsection,2,3,9. 推荐,1,9. 推荐意见外审和批准,excluded,,exclude
+SRC003,SRC003-S02-SS10,SRC003-S02,12,subsection,2,3,10. 传,1,10. 传播与更新,excluded,,exclude
+SRC003,SRC003-S03,,13,section,1,3,共识,13,共识,included,,auto_text
+SRC003,SRC003-S03-Q01,SRC003-S03,14,question,2,3,问题1：KOA ,1,问题1：KOA 的治疗目标为何？,included,,auto_text
+SRC003,SRC003-S03-Q01-R01,SRC003-S03-Q01,15,recommendation,3,3,推荐意见1：,1,推荐意见1：KOA 的总体目标,included,,auto_text
+SRC003,SRC003-S03-Q01-R02,SRC003-S03-Q01,16,recommendation,3,3,推荐意见2：,1,推荐意见2：建议临床医生在KOA,included,,auto_text
+SRC003,SRC003-S03-Q02,SRC003-S03,17,question,2,4,问题2：KOA,1,问题2：KOA 患者治疗前分型,included,,auto_text
+SRC003,SRC003-S03-Q02-R01,SRC003-S03-Q02,18,recommendation,3,4,推荐意见3：,1,推荐意见3：KOA 患者治疗前分型,included,,auto_text
+SRC003,SRC003-S03-Q03,SRC003-S03,19,question,2,4,问题3：,1,问题3：KOA高危人群？,included,,auto_text
+SRC003,SRC003-S03-Q03-R01,SRC003-S03-Q03,20,recommendation,3,5,推荐意见4：,1,推荐意见4：高危人群主要因素,included,,auto_text
+SRC003,SRC003-S03-Q03-R02,SRC003-S03-Q03,21,recommendation,3,5,推荐意见5：,1,推荐意见5：可控风险因素,included,,auto_text
+SRC003,SRC003-S03-Q04,SRC003-S03,22,question,2,5,问题4：,1,问题4：KOA基础治疗,included,,auto_text
+SRC003,SRC003-S03-Q04-R01,SRC003-S03-Q04,23,recommendation,3,5,推荐意见6：,1,推荐意见6：KOA基础治疗,included,,auto_text
+SRC003,SRC003-S03-Q05,SRC003-S03,24,question,2,6,问题5：,1,问题5：药物治疗随访,included,,auto_text
+SRC003,SRC003-S03-Q05-R01,SRC003-S03-Q05,25,recommendation,3,6,推荐意见7：,1,推荐意见7：基础随访时间,included,,auto_text
+SRC003,SRC003-S03-Q05-R02,SRC003-S03-Q05,26,recommendation,3,6,推荐意见8：,1,推荐意见8：基础随访内容,included,,auto_text
+SRC003,SRC003-S03-Q06,SRC003-S03,27,question,2,7,问题6：,1,问题6：共病的KOA治疗原则,included,,auto_text
+SRC003,SRC003-S03-Q06-R01,SRC003-S03-Q06,28,recommendation,3,7,推荐意见9：,1,推荐意见9：首先非药物治疗,included,,auto_text
+SRC003,SRC003-S03-Q06-R02,SRC003-S03-Q06,29,recommendation,3,7,推荐意见10：,1,推荐意见10：合并糖尿病,included,,auto_text
+SRC003,SRC003-S03-Q06-R03,SRC003-S03-Q06,30,recommendation,3,7,推荐意见11：,1,推荐意见11：出血风险,included,,auto_text
+SRC003,SRC003-S03-Q06-R04,SRC003-S03-Q06,31,recommendation,3,8,推荐意见12：,1,推荐意见12：肾功能风险,included,,auto_text
+SRC003,SRC003-S03-Q07,SRC003-S03,32,question,2,8,问题7：,1,问题7：NSAIDs使用依据,included,,auto_text
+SRC003,SRC003-S03-Q07-R01,SRC003-S03-Q07,33,recommendation,3,8,推荐意见13：,1,推荐意见13：轻中度疼痛,included,,auto_text
+SRC003,SRC003-S03-Q07-R02,SRC003-S03-Q07,34,recommendation,3,8,推荐意见14：,1,推荐意见14：中重度和慢性疼痛,included,,auto_text
+SRC003,SRC003-S03-Q08,SRC003-S03,35,question,2,8,问题8：,1,问题8：精神类药物,included,,auto_text
+SRC003,SRC003-S03-Q08-R01,SRC003-S03-Q08,36,recommendation,3,8,推荐意见15：,1,推荐意见15：精神类药物建议,included,,auto_text
+SRC003,SRC003-S03-Q09,SRC003-S03,37,question,2,9,问题9：,1,问题9：关节腔注射问题,included,,auto_text
+SRC003,SRC003-S03-Q09-R01,SRC003-S03-Q09,38,recommendation,3,9,推荐意见16：,1,推荐意见16：个体化,included,,auto_text
+SRC003,SRC003-S03-Q09-R02,SRC003-S03-Q09,39,recommendation,3,9,推荐意见17：,1,推荐意见17：糖皮质激素,included,,auto_text
+SRC003,SRC003-S03-Q10,SRC003-S03,40,question,2,10,问题10：,1,问题10：抗骨松药物,included,,auto_text
+SRC003,SRC003-S03-Q10-R01,SRC003-S03-Q10,41,recommendation,3,10,推荐意见18：,1,推荐意见18：不推荐的抗骨松药物,included,,auto_text
+SRC003,SRC003-S03-Q10-R02,SRC003-S03-Q10,42,recommendation,3,10,推荐意见19：,1,推荐意见19：建议维生素D,included,,auto_text
+SRC003,SRC003-S03-Q11,SRC003-S03,43,question,2,10,问题11：,1,问题11：口服氨基葡萄糖,included,,auto_text
+SRC003,SRC003-S03-Q11-R01,SRC003-S03-Q11,44,recommendation,3,10,推荐意见20：,1,推荐意见20：推荐的氨基葡萄糖种类,included,,auto_text
+SRC003,SRC003-S03-Q12,SRC003-S03,45,question,2,11,问题12：,1,问题12：双醋瑞因问题,included,,auto_text
+SRC003,SRC003-S03-Q12-R01,SRC003-S03-Q12,46,recommendation,3,11,推荐意见21：,1,推荐意见21：双醋瑞因建议,included,,auto_text
+SRC003,SRC003-S03-Q13,SRC003-S03,47,question,2,11,问题13：,1,问题13：抗风湿药问题,included,,auto_text
+SRC003,SRC003-S03-Q13-R01,SRC003-S03-Q13,48,recommendation,3,11,推荐意见22：,1,推荐意见22：抗风湿药建议,included,,auto_text
+SRC003,SRC003-S03-Q13-R02,SRC003-S03-Q13,49,recommendation,3,12,推荐意见23：,1,推荐意见23：中重度KOA抗风湿药建议,included,,auto_text
+SRC003,SRC003-S03-Q14,SRC003-S03,50,question,2,12,问题14：,1,问题14：其他药物问题,included,,auto_text
+SRC003,SRC003-S03-Q14-R01,SRC003-S03-Q14,51,recommendation,3,12,推荐意见24：,1,推荐意见24：口服中药,included,,auto_text
+SRC003,SRC003-S03-Q14-R02,SRC003-S03-Q14,52,recommendation,3,12,推荐意见25：,1,推荐意见25：草乌甲素,included,,auto_text
+SRC003,SRC003-S03-Q14-R03,SRC003-S03-Q14,53,recommendation,3,12,推荐意见26：,1,推荐意见26：不推荐曲马多,included,,auto_text
+SRC003,SRC003-S03-Q14-R04,SRC003-S03-Q14,54,recommendation,3,13,推荐意见27：,1,推荐意见27：不推荐秋水仙碱等,included,,auto_text
