@@ -1,0 +1,5 @@
+﻿record_id,source_id,node_id,pdf_page,table_id,record_type,include_status,extraction_mode,review_status,structure_node_status,text_length,text_sha256,validation_status,issues
+SRC001-T002-KNEE-SYMPTOMS,SRC001,SRC001-S05,4,T002,manual_table_chunk,included,manual_table,human_verified,found,146,b5697475076f229fb20f5c3254063944893dee3ab6682330e43855e00ae4a35c,pass,
+SRC001-T002-KNEE-SIGNS,SRC001,SRC001-S05,4,T002,manual_table_chunk,included,manual_table,human_verified,found,101,424c3535c4dd5aaa1eb8858a1904ee885c1fc0f879db6cc83778b0c1853cb9ea,pass,
+SRC001-T003-KNEE-DIAGNOSIS,SRC001,SRC001-S06,4,T003,manual_table_chunk,included,manual_table,human_verified,found,121,3fba8c1b378bec912c81e1269727dd6d33e310adf1a1ed580912dcf4ba1f4e0f,pass,
+SRC001-T003-IMAGING-NOTES,SRC001,SRC001-S06,4,T003,manual_table_chunk,included,manual_table,human_verified,found,179,e44c9c7831b26ecf74d73e79e4770f66b3b75364ec260195251ff703840cf8bd,pass,
