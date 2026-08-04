@@ -10,7 +10,7 @@ RET-008,pilot,dev,medication,conditional_recommendation,medium,骨关节炎可�
 RET-009,pilot,dev,medication,risk_condition,hard,我总是感觉胃不舒服，有哪些药不能吃？,answerable,SRC003-QR-032-033-C01,SRC003-QR-032-034-C01,SRC003,single_chunk,verified,
 RET-010,pilot,dev,medication,recommendation,medium,膝骨关节炎治疗有哪些原则要注意？,answerable,SRC003-QR-014-015-C01,SRC003-QR-014-016-C01,SRC003,single_chunk,verified,
 RET-011,pilot,dev,integrated_management,multi_evidence,hard,我同时还有糖尿病，该怎么治疗膝骨关节炎？,answerable,SRC003-QR-027-028-C01|SRC003-QR-027-029-C01,SRC003-QR-027-030-C01|SRC003-QR-027-031-C01,SRC003,multi_chunk,verified,
-RET-012,pilot,dev,knowledge_boundary,no_gold,hard,膝关节置换有哪些不同类型？,unanswerable,,,,no_gold,draft,
+RET-012,pilot,dev,knowledge_boundary,no_gold,hard,膝关节置换有哪些不同类型？,unanswerable,,,,no_gold,verified,
 RET-013,expansion,dev,clinical_manifestation,fact_lookup,medium,,answerable,,,,single_chunk,draft,
 RET-014,expansion,dev,diagnosis,multi_evidence,hard,,answerable,,,,multi_chunk,draft,
 RET-015,expansion,dev,imaging,conditional_rule,medium,,answerable,,,,single_chunk,draft,
