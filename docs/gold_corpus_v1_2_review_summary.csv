@@ -1,0 +1,2 @@
+﻿corpus_version,reviewed_chunks,usable_yes,usable_partial,usable_no,title_path_correct_yes,reference_noise_none,question_recommendation_complete_yes,partial_groups,decision
+gold_v1_2,43,34,9,0,43,43,19,SRC003-Q02-R03|SRC003-Q04-R06|SRC003-Q08-R15,targeted_v1_3_split_fix_before_corpus_freeze

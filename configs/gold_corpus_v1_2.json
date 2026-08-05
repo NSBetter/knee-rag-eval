@@ -1,0 +1,12 @@
+{
+  "corpus_version": "gold_v1_2",
+  "included_sources": [
+    "SRC001",
+    "SRC003"
+  ],
+  "target_chars": 750,
+  "max_chars": 1100,
+  "min_chars": 120,
+  "review_sample_size": 30,
+  "random_seed": 42
+}

@@ -1,0 +1,15 @@
+﻿issue_id,source_id,node_id,severity,issue_type,finding,v1_2_resolution
+V11-001,SRC001,SRC001-S02,error,layout_interleaving,概述中混入英文地址和表1证据分级内容,使用显式remove_between规则删除插入块
+V11-002,SRC001,SRC001-S04-SS04,error,layout_interleaving,其他机制段落中混入表1尾部,删除证据等级表尾并保留段落两侧正文
+V11-003,SRC001,SRC001-S08-SS01-T03,error,table_pollution,中度阶段正文中混入表2、表3、表4及图1/图2,删除表2至图2之间的版面插入内容
+V11-004,SRC001,SRC001-S08-SS03,error,table_pollution,物理治疗节点混入临床分期表和外用药物表,仅保留截至“见表7”的清洁正文；表7等待人工证据
+V11-005,SRC001,SRC001-S08-SS04-T02,error,table_pollution,玻璃酸钠正文被表5、表6、表7内容穿插,通过两个显式区间删除规则恢复正文主干
+V11-006,SRC001,SRC001-S08-SS04-T03,error,table_pollution,PRP正文中混入表7项目和等级列,删除表7插入块并重排同源句子片段
+V11-007,SRC001,SRC001-S08-SS05-T01,error,structural_only_chunk,射频技术父节点仅包含参考文献编号,剥离标题后识别citation-only并跳过
+V11-008,SRC001,multiple_partial_markers,error,heading_residue,短marker只删除标题前缀，留下“性手术治疗”“运动”等残片,优先按完整display_title进行弹性前缀删除
+V11-009,SRC001,SRC001-S08-SS08-T04,error,tail_boundary,最后节点吞入利益冲突和参考文献,使用参考文献边界并在利益冲突标记前提前停止
+V11-010,SRC003,SRC003-S01,error,content_anchor,正文定位marker被误当标题删除，首词变为teoarthritis,将该节点声明为content_anchor并保留marker文本
+V11-011,SRC003,continuation_chunks,error,incomplete_repeated_context,续块只重复推荐意见缩略标题，未保留完整推荐条件,续块重复临床问题及推荐文本的实质性前缀
+V11-012,SRC003,SRC003-S03-Q14-R04,error,tail_boundary,推荐意见27后混入共识总结和工作组名单,在工作组边界前停止，并将一般性共识总结从推荐块剥离
+V11-013,SRC001,SRC001-S07,warning,missing_manual_evidence,诊疗流程、阶梯化治疗与临床分期设为manual_table但尚无人工证据,构建诊断报告中显式保留缺口；MVP可暂时允许但不可静默忽略
+V11-014,SRC001,hybrid_nodes,warning,missing_manual_evidence,局部外用药物、全身作用药物和物理治疗暂无人工表格记录,保留清洁自动正文，并在诊断报告中标记hybrid_without_manual_evidence

@@ -1,0 +1,20 @@
+﻿source_id,node_id,category,status,detail,value
+SRC001,SRC001-S02,cleanup_rule,applied,remove-interleaved-methods-table-from-overview,379
+SRC001,SRC001-S04-SS04,cleanup_rule,applied,remove-tail-of-evidence-grade-table,42
+SRC001,SRC001-S08,structural_only,skipped,no independent retrievable body,0
+SRC001,SRC001-S08-SS01-T03,cleanup_rule,applied,remove-tables-and-figures-from-moderate-stage,1996
+SRC001,SRC001-S08-SS02,structural_only,skipped,no independent retrievable body,0
+SRC001,SRC001-S08-SS03,cleanup_rule,applied,keep-clean-physical-therapy-introduction,1340
+SRC001,SRC001-S08-SS04,structural_only,skipped,no independent retrievable body,0
+SRC001,SRC001-S08-SS04-T02,cleanup_rule,applied,remove-tail-of-topical-drug-table,177
+SRC001,SRC001-S08-SS04-T02,cleanup_rule,applied,remove-oral-drug-and-physical-therapy-tables,1417
+SRC001,SRC001-S08-SS04-T03,cleanup_rule,applied,remove-interleaved-physical-therapy-table,102
+SRC001,SRC001-S08-SS04-T03,cleanup_rule,applied,restore-prp-sentence-token-order,3
+SRC001,SRC001-S08-SS05-T01,structural_only,skipped,no independent retrievable body,9
+SRC001,SRC001-S08-SS07-T01,structural_only,skipped,no independent retrievable body,0
+SRC003,SRC003-S03,structural_only,skipped,no independent retrievable body,0
+SRC003,SRC003-S03-Q14-R04,cleanup_rule,applied,remove-general-consensus-conclusion-from-recommendation-27,238
+SRC001,SRC001-S07,missing_manual_evidence,allowed_for_mvp,诊疗流程、阶梯化治疗与临床分期,
+SRC001,SRC001-S08-SS02-T01,hybrid_without_manual_evidence,warning,1. 局部外用药物,
+SRC001,SRC001-S08-SS02-T02,hybrid_without_manual_evidence,warning,2. 全身作用药物,
+SRC001,SRC001-S08-SS03,hybrid_without_manual_evidence,warning,三、物理治疗,

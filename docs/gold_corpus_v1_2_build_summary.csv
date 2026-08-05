@@ -1,0 +1,6 @@
+﻿corpus_version,source_id,content_type,chunk_count,cross_page_count,context_repeated_count,human_verified_count,min_chars,median_chars,mean_chars,max_chars,below_min_count,above_max_count,build_warning_count,skipped_structural_only_count
+gold_v1_2,SRC001,manual_table_chunk,4,0,0,4,101,133.5,136.8,179,1,0,23,6
+gold_v1_2,SRC001,section_text,41,7,0,0,17,106,157.0,498,22,0,23,6
+gold_v1_2,SRC003,question_recommendation,40,21,13,0,205,613.0,608.3,898,0,0,23,6
+gold_v1_2,SRC003,section_text,1,0,0,0,493,493,493,493,0,0,23,6
+gold_v1_2,ALL,ALL,86,28,13,4,17,345.5,369.9,898,23,0,23,6
