@@ -34,3 +34,5 @@ __pycache__/
 
 # Jupyter
 .ipynb_checkpoints/
+# Local model weights
+models/

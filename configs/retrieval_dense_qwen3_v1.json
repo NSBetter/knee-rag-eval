@@ -1,0 +1,12 @@
+{
+  "run_id": "qwen3_embedding_0_6b_dense_v1",
+  "model_name": "models/Qwen3-Embedding-0.6B",
+  "corpus_version": "gold_v1_3",
+  "benchmark_version": "retrieval_eval_v1",
+  "query_prompt_name": "query",
+  "batch_size": 4,
+  "max_seq_length": 2048,
+  "normalize_embeddings": true,
+  "top_k": 10,
+  "force_rebuild_embeddings": false
+}

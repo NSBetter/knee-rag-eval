@@ -1,0 +1,13 @@
+﻿query_id,answerability,bm25_first_gold_rank,dense_first_gold_rank,rank_delta_dense_minus_bm25,winner,bm25_hit_at_5,dense_hit_at_5,dense_relevant_hit_at_5,bm25_top1_chunk_id,dense_top1_chunk_id
+RET-001,answerable,1,1,0,tie,1,1,1,SRC001-T002-KNEE-SIGNS,SRC001-T002-KNEE-SIGNS
+RET-002,answerable,,1,,dense,0,1,1,SRC003-QR-019-020-C01,SRC001-T002-KNEE-SYMPTOMS
+RET-003,answerable,1,1,0,tie,1,1,1,SRC001-T003-KNEE-DIAGNOSIS,SRC001-T003-KNEE-DIAGNOSIS
+RET-004,answerable,7,3,-4,dense,0,1,1,SRC003-SEC-001-C01,SRC001-T003-KNEE-DIAGNOSIS
+RET-005,answerable,1,1,0,tie,1,1,1,SRC001-T003-KNEE-DIAGNOSIS,SRC001-T003-KNEE-DIAGNOSIS
+RET-006,answerable,1,,,bm25,1,0,0,SRC003-QR-022-023-C01,SRC001-SEC-024-C01
+RET-007,answerable,2,2,0,tie,1,1,1,SRC003-QR-022-023-C02,SRC003-QR-022-023-C02
+RET-008,answerable,1,1,0,tie,1,1,1,SRC001-SEC-023-C01,SRC001-SEC-023-C01
+RET-009,answerable,1,1,0,tie,1,1,1,SRC003-QR-027-031-C01,SRC003-QR-027-031-C01
+RET-010,answerable,1,1,0,tie,1,1,1,SRC003-QR-014-015-C01,SRC003-QR-014-015-C01
+RET-011,answerable,1,1,0,tie,1,1,1,SRC003-QR-027-029-C01,SRC003-QR-027-029-C01
+RET-012,unanswerable,,,,tie,,,,SRC003-QR-017-018-C01,SRC001-SEC-049-C01
