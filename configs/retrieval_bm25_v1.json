@@ -1,0 +1,10 @@
+{
+  "run_id": "bm25_char_bigram_v1",
+  "corpus_version": "gold_v1_3",
+  "benchmark_version": "retrieval_eval_v1",
+  "tokenization": "cjk_unigram_bigram_plus_alnum",
+  "k1": 1.5,
+  "b": 0.75,
+  "title_repeat": 2,
+  "top_k": 10
+}
