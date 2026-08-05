@@ -1,2 +1,2 @@
-﻿benchmark_version,validation_scope,verified_rows,pass_count,review_count,error_count,single_chunk_count,multi_chunk_count,no_gold_count,src001_gold_queries,src003_gold_queries,topic_distribution
-retrieval_eval_v1,pilot,12,12,0,0,10,1,1,7,4,"{""clinical_manifestation"":2,""diagnosis"":1,""diagnosis_boundary"":1,""imaging"":1,""integrated_management"":1,""knowledge_boundary"":1,""medication"":3,""non_pharmacologic"":2}"
+﻿benchmark_version,validator_version,validation_scope,expected_rows,selected_rows,verified_rows,pass_count,review_count,error_count,single_chunk_count,multi_chunk_count,no_gold_count,cross_source_count,topic_distribution,benchmark_status,global_issues
+retrieval_eval_v1,v1.1,pilot,12,12,12,12,0,0,8,3,1,1,"{""clinical_manifestation"":2,""diagnosis"":1,""diagnosis_boundary"":1,""imaging"":1,""integrated_management"":1,""knowledge_boundary"":1,""medication"":3,""non_pharmacologic"":2}",pass,

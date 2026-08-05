@@ -1,0 +1,13 @@
+﻿run_id,scope,query_id,answerability,gold_count,first_gold_rank,hit_at_1,hit_at_3,hit_at_5,recall_at_5,top1_score,top1_chunk_id
+bm25_char_bigram_v1,pilot,RET-001,answerable,2,1,1,1,1,1.0,25.300501,SRC001-T002-KNEE-SIGNS
+bm25_char_bigram_v1,pilot,RET-002,answerable,1,,0,0,0,0.0,22.993512,SRC003-QR-019-020-C01
+bm25_char_bigram_v1,pilot,RET-003,answerable,1,1,1,1,1,1.0,19.879284,SRC001-T003-KNEE-DIAGNOSIS
+bm25_char_bigram_v1,pilot,RET-004,answerable,1,7,0,0,0,0.0,25.625624,SRC003-SEC-001-C01
+bm25_char_bigram_v1,pilot,RET-005,answerable,1,1,1,1,1,1.0,56.644671,SRC001-T003-KNEE-DIAGNOSIS
+bm25_char_bigram_v1,pilot,RET-006,answerable,2,1,1,1,1,0.5,17.879678,SRC003-QR-022-023-C01
+bm25_char_bigram_v1,pilot,RET-007,answerable,1,2,0,1,1,1.0,37.064939,SRC003-QR-022-023-C02
+bm25_char_bigram_v1,pilot,RET-008,answerable,1,1,1,1,1,1.0,89.114895,SRC001-SEC-023-C01
+bm25_char_bigram_v1,pilot,RET-009,answerable,1,1,1,1,1,1.0,90.266901,SRC003-QR-027-031-C01
+bm25_char_bigram_v1,pilot,RET-010,answerable,1,1,1,1,1,1.0,34.770318,SRC003-QR-014-015-C01
+bm25_char_bigram_v1,pilot,RET-011,answerable,2,1,1,1,1,0.5,88.915097,SRC003-QR-027-029-C01
+bm25_char_bigram_v1,pilot,RET-012,unanswerable,0,,,,,,22.972377,SRC003-QR-017-018-C01

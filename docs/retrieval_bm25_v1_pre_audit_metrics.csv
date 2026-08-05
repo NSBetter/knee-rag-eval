@@ -1,0 +1,2 @@
+﻿run_id,scope,corpus_version,benchmark_version,retriever,tokenization,k1,b,title_repeat,evaluated_answerable_queries,reported_unanswerable_queries,hit_at_1,hit_at_3,hit_at_5,recall_at_5,mrr_at_10
+bm25_char_bigram_v1,pilot,gold_v1_3,retrieval_eval_v1,BM25,cjk_unigram_bigram_plus_alnum,1.5,0.75,2,11,1,0.090909,0.181818,0.181818,0.136364,0.160714

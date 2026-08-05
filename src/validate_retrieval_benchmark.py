@@ -1,441 +1,246 @@
-"""Validate retrieval benchmark labels against gold_v1_3."""
+"""Strictly validate Retrieval Benchmark v1 against gold_v1_3."""
 
 from __future__ import annotations
 
 import argparse
 import csv
+import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
+CORPUS = ROOT / "data/processed/gold_corpus/gold_corpus_v1_3.csv"
+BENCHMARK = ROOT / "data/benchmark/retrieval_eval_v1.csv"
+LOCAL_AUDIT = ROOT / "data/processed/reviews/retrieval_eval_v1_audit.csv"
+PUBLIC_SUMMARY = ROOT / "docs/retrieval_benchmark_v1_summary.csv"
 
-CORPUS_PATH = (
-    ROOT
-    / "data"
-    / "processed"
-    / "gold_corpus"
-    / "gold_corpus_v1_3.csv"
-)
-
-BENCHMARK_PATH = (
-    ROOT
-    / "data"
-    / "benchmark"
-    / "retrieval_eval_v1.csv"
-)
-
-LOCAL_AUDIT_PATH = (
-    ROOT
-    / "data"
-    / "processed"
-    / "reviews"
-    / "retrieval_eval_v1_audit.csv"
-)
-
-PUBLIC_SUMMARY_PATH = (
-    ROOT
-    / "docs"
-    / "retrieval_benchmark_v1_summary.csv"
-)
-
+EXPECTED_PILOT_IDS = {f"RET-{i:03d}" for i in range(1, 13)}
 REQUIRED_COLUMNS = [
-    "query_id",
-    "phase",
-    "split",
-    "topic",
-    "query_type",
-    "difficulty",
-    "query",
-    "answerability",
-    "gold_chunk_ids",
-    "supporting_chunk_ids",
-    "expected_source_ids",
-    "evidence_scope",
-    "review_status",
+    "query_id", "phase", "split", "topic", "query_type", "difficulty",
+    "query", "answerability", "gold_chunk_ids", "supporting_chunk_ids",
+    "expected_source_ids", "evidence_scope", "review_status",
     "reviewer_notes",
 ]
-
 ALLOWED = {
     "phase": {"pilot", "expansion"},
     "split": {"dev", "test"},
     "difficulty": {"easy", "medium", "hard"},
     "answerability": {"answerable", "unanswerable"},
-    "evidence_scope": {
-        "single_chunk",
-        "multi_chunk",
-        "no_gold",
-    },
+    "evidence_scope": {"single_chunk", "multi_chunk", "no_gold"},
     "review_status": {"draft", "verified"},
 }
 
 
 def read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
     if not path.exists():
-        raise FileNotFoundError(f"File not found: {path}")
-
-    with path.open(
-        "r",
-        encoding="utf-8-sig",
-        newline="",
-    ) as file:
-        reader = csv.DictReader(file)
-        columns = list(reader.fieldnames or [])
+        raise FileNotFoundError(path)
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        cols = list(reader.fieldnames or [])
         rows = [
-            {
-                key: (value or "").strip()
-                for key, value in row.items()
-            }
+            {k: (v or "").strip() for k, v in row.items()}
             for row in reader
         ]
-    return rows, columns
+    return rows, cols
 
 
-def split_ids(value: str) -> list[str]:
-    return [
-        item.strip()
-        for item in value.split("|")
-        if item.strip()
-    ]
-
-
-def write_csv(
-    path: Path,
-    rows: list[dict[str, Any]],
-) -> None:
-    path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-    with path.open(
-        "w",
-        encoding="utf-8-sig",
-        newline="",
-    ) as file:
-        writer = csv.DictWriter(
-            file,
-            fieldnames=list(rows[0].keys()),
-        )
+def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
+    if not rows:
+        raise ValueError(f"No rows to write: {path}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
 
 
+def ids(value: str) -> list[str]:
+    return [x.strip() for x in value.split("|") if x.strip()]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--scope",
-        choices=("pilot", "all"),
-        default="pilot",
-        help="Validate verified pilot rows or all verified rows.",
-    )
+    parser.add_argument("--scope", choices=("pilot", "all"), default="pilot")
     args = parser.parse_args()
 
-    corpus_rows, corpus_columns = read_csv(
-        CORPUS_PATH
-    )
-    benchmark_rows, benchmark_columns = read_csv(
-        BENCHMARK_PATH
-    )
+    corpus_rows, corpus_cols = read_csv(CORPUS)
+    rows, cols = read_csv(BENCHMARK)
 
-    missing_columns = [
-        column
-        for column in REQUIRED_COLUMNS
-        if column not in benchmark_columns
-    ]
-    if missing_columns:
-        raise ValueError(
-            f"Benchmark is missing columns: {missing_columns}"
-        )
+    missing = [c for c in REQUIRED_COLUMNS if c not in cols]
+    if missing:
+        raise ValueError(f"Missing benchmark columns: {missing}")
+    if "chunk_id" not in corpus_cols:
+        raise ValueError("Gold corpus has no chunk_id column.")
 
-    if "chunk_id" not in corpus_columns:
-        raise ValueError(
-            "Gold corpus has no chunk_id column."
-        )
+    chunk_source = {r["chunk_id"]: r["source_id"] for r in corpus_rows}
+    query_counts = Counter(r["query_id"] for r in rows)
 
-    chunk_to_source = {
-        row["chunk_id"]: row["source_id"]
-        for row in corpus_rows
-    }
-
-    query_counts = Counter(
-        row["query_id"]
-        for row in benchmark_rows
+    selected = (
+        [r for r in rows if r["phase"] == "pilot"]
+        if args.scope == "pilot"
+        else [r for r in rows if r["review_status"] == "verified"]
     )
 
-    selected_rows = [
-        row
-        for row in benchmark_rows
-        if (
-            row["review_status"] == "verified"
-            and (
-                args.scope == "all"
-                or row["phase"] == "pilot"
-            )
-        )
-    ]
+    global_issues: list[str] = []
+    selected_ids = {r["query_id"] for r in selected}
 
-    audit_rows: list[dict[str, Any]] = []
+    if args.scope == "pilot":
+        missing_ids = sorted(EXPECTED_PILOT_IDS - selected_ids)
+        extra_ids = sorted(selected_ids - EXPECTED_PILOT_IDS)
+        if len(selected) != 12:
+            global_issues.append(f"pilot_row_count={len(selected)} expected=12")
+        if missing_ids:
+            global_issues.append("missing_pilot_ids:" + "|".join(missing_ids))
+        if extra_ids:
+            global_issues.append("unexpected_pilot_ids:" + "|".join(extra_ids))
 
-    for row in selected_rows:
-        issues: list[str] = []
+    audit: list[dict[str, Any]] = []
+
+    for row in selected:
+        errors: list[str] = []
         warnings: list[str] = []
 
-        query_id = row["query_id"]
+        for field, allowed in ALLOWED.items():
+            if row[field] not in allowed:
+                errors.append(f"invalid_{field}:{row[field]}")
 
-        if not query_id:
-            issues.append("empty_query_id")
-        elif query_counts[query_id] > 1:
-            issues.append("duplicate_query_id")
-
-        for field, allowed_values in ALLOWED.items():
-            if row[field] not in allowed_values:
-                issues.append(
-                    f"invalid_{field}:{row[field]}"
-                )
-
-        if not row["topic"]:
-            issues.append("empty_topic")
-
-        if not row["query_type"]:
-            issues.append("empty_query_type")
-
+        if query_counts[row["query_id"]] > 1:
+            errors.append("duplicate_query_id")
+        if row["review_status"] != "verified":
+            errors.append("row_not_verified")
         if not row["query"]:
-            issues.append("empty_query")
+            errors.append("empty_query")
         elif len(row["query"]) < 6:
             warnings.append("query_unusually_short")
+        if not row["topic"]:
+            errors.append("empty_topic")
+        if not row["query_type"]:
+            errors.append("empty_query_type")
 
-        gold_ids = split_ids(
-            row["gold_chunk_ids"]
-        )
-        supporting_ids = split_ids(
-            row["supporting_chunk_ids"]
-        )
-        expected_sources = set(
-            split_ids(
-                row["expected_source_ids"]
-            )
-        )
+        gold = ids(row["gold_chunk_ids"])
+        supporting = ids(row["supporting_chunk_ids"])
+        expected_sources = set(ids(row["expected_source_ids"]))
 
-        all_labeled_ids = gold_ids + supporting_ids
-        missing_chunk_ids = [
-            chunk_id
-            for chunk_id in all_labeled_ids
-            if chunk_id not in chunk_to_source
-        ]
-        if missing_chunk_ids:
-            issues.append(
-                "unknown_chunk_ids:"
-                + "|".join(missing_chunk_ids)
-            )
-
-        if len(gold_ids) != len(set(gold_ids)):
-            issues.append("duplicate_gold_chunk_id")
-
-        overlap = sorted(
-            set(gold_ids) & set(supporting_ids)
-        )
+        unknown = [x for x in gold + supporting if x not in chunk_source]
+        if unknown:
+            errors.append("unknown_chunk_ids:" + "|".join(unknown))
+        if len(gold) != len(set(gold)):
+            errors.append("duplicate_gold_chunk_id")
+        overlap = sorted(set(gold) & set(supporting))
         if overlap:
-            issues.append(
-                "gold_supporting_overlap:"
-                + "|".join(overlap)
-            )
+            errors.append("gold_supporting_overlap:" + "|".join(overlap))
 
         if row["answerability"] == "answerable":
-            if not gold_ids:
-                issues.append(
-                    "answerable_without_gold"
-                )
+            if not gold:
+                errors.append("answerable_without_gold")
             if row["evidence_scope"] == "no_gold":
-                issues.append(
-                    "answerable_with_no_gold_scope"
-                )
-
-        if row["answerability"] == "unanswerable":
-            if gold_ids:
-                issues.append(
-                    "unanswerable_has_gold"
-                )
+                errors.append("answerable_with_no_gold_scope")
+        else:
+            if gold:
+                errors.append("unanswerable_has_gold")
             if row["evidence_scope"] != "no_gold":
-                issues.append(
-                    "unanswerable_scope_not_no_gold"
-                )
+                errors.append("unanswerable_scope_not_no_gold")
 
-        if (
-            row["evidence_scope"] == "single_chunk"
-            and len(gold_ids) != 1
-        ):
-            issues.append(
-                "single_chunk_scope_requires_one_gold"
-            )
-
-        if (
-            row["evidence_scope"] == "multi_chunk"
-            and len(gold_ids) < 2
-        ):
-            issues.append(
-                "multi_chunk_scope_requires_multiple_gold"
-            )
+        if row["evidence_scope"] == "single_chunk" and len(gold) != 1:
+            errors.append("single_chunk_requires_one_gold")
+        if row["evidence_scope"] == "multi_chunk" and len(gold) < 2:
+            errors.append("multi_chunk_requires_multiple_gold")
 
         actual_sources = {
-            chunk_to_source[chunk_id]
-            for chunk_id in gold_ids
-            if chunk_id in chunk_to_source
+            chunk_source[x] for x in gold if x in chunk_source
         }
-
-        if (
-            expected_sources
-            and actual_sources != expected_sources
-        ):
-            issues.append(
-                "expected_source_mismatch:"
-                + "|".join(sorted(actual_sources))
+        if expected_sources and actual_sources != expected_sources:
+            errors.append(
+                "expected_source_mismatch:" + "|".join(sorted(actual_sources))
             )
 
-        status = (
-            "error"
-            if issues
-            else "review"
-            if warnings
-            else "pass"
-        )
+        status = "error" if errors else "review" if warnings else "pass"
+        audit.append({
+            "query_id": row["query_id"],
+            "phase": row["phase"],
+            "split": row["split"],
+            "topic": row["topic"],
+            "query_type": row["query_type"],
+            "difficulty": row["difficulty"],
+            "answerability": row["answerability"],
+            "evidence_scope": row["evidence_scope"],
+            "gold_count": len(gold),
+            "gold_source_ids": "|".join(sorted(actual_sources)),
+            "review_status": row["review_status"],
+            "validation_status": status,
+            "issues": "; ".join(errors + warnings),
+            "query": row["query"],
+            "gold_chunk_ids": row["gold_chunk_ids"],
+            "supporting_chunk_ids": row["supporting_chunk_ids"],
+            "reviewer_notes": row["reviewer_notes"],
+        })
 
-        audit_rows.append(
-            {
-                "query_id": query_id,
-                "phase": row["phase"],
-                "split": row["split"],
-                "topic": row["topic"],
-                "query_type": row["query_type"],
-                "difficulty": row["difficulty"],
-                "answerability": row[
-                    "answerability"
-                ],
-                "evidence_scope": row[
-                    "evidence_scope"
-                ],
-                "gold_count": len(gold_ids),
-                "gold_source_ids": "|".join(
-                    sorted(actual_sources)
-                ),
-                "validation_status": status,
-                "issues": "; ".join(
-                    [*issues, *warnings]
-                ),
-                "query": row["query"],
-                "gold_chunk_ids": row[
-                    "gold_chunk_ids"
-                ],
-                "supporting_chunk_ids": row[
-                    "supporting_chunk_ids"
-                ],
-                "reviewer_notes": row[
-                    "reviewer_notes"
-                ],
-            }
-        )
-
-    if not audit_rows:
-        raise ValueError(
-            "No verified rows selected. "
-            "Set review_status=verified after labeling."
-        )
-
-    write_csv(
-        LOCAL_AUDIT_PATH,
-        audit_rows,
+    verified = [r for r in audit if r["review_status"] == "verified"]
+    scope_counts = Counter(r["evidence_scope"] for r in verified)
+    cross_source = sum(
+        len(ids(r["gold_source_ids"])) >= 2 for r in verified
     )
 
-    status_counts = Counter(
-        row["validation_status"]
-        for row in audit_rows
-    )
-    topic_counts = Counter(
-        row["topic"]
-        for row in audit_rows
-    )
-    scope_counts = Counter(
-        row["evidence_scope"]
-        for row in audit_rows
-    )
-    source_counts = Counter(
-        source
-        for row in audit_rows
-        for source in (
-            row["gold_source_ids"].split("|")
-            if row["gold_source_ids"]
-            else []
-        )
+    if args.scope == "pilot":
+        if scope_counts["multi_chunk"] < 2:
+            global_issues.append("pilot_requires_at_least_2_multi_chunk_rows")
+        if scope_counts["no_gold"] < 1:
+            global_issues.append("pilot_requires_at_least_1_no_gold_row")
+        if cross_source < 1:
+            global_issues.append("pilot_requires_at_least_1_cross_source_row")
+
+    write_csv(LOCAL_AUDIT, audit)
+    status_counts = Counter(r["validation_status"] for r in audit)
+    benchmark_status = (
+        "error"
+        if status_counts["error"] or global_issues
+        else "review"
+        if status_counts["review"]
+        else "pass"
     )
 
-    summary_rows = [
-        {
-            "benchmark_version":
-                "retrieval_eval_v1",
-            "validation_scope": args.scope,
-            "verified_rows": len(audit_rows),
-            "pass_count": status_counts[
-                "pass"
-            ],
-            "review_count": status_counts[
-                "review"
-            ],
-            "error_count": status_counts[
-                "error"
-            ],
-            "single_chunk_count":
-                scope_counts["single_chunk"],
-            "multi_chunk_count":
-                scope_counts["multi_chunk"],
-            "no_gold_count":
-                scope_counts["no_gold"],
-            "src001_gold_queries":
-                source_counts["SRC001"],
-            "src003_gold_queries":
-                source_counts["SRC003"],
-            "topic_distribution": json_compact(
-                topic_counts
-            ),
-        }
-    ]
+    topic_counts = Counter(r["topic"] for r in verified)
+    write_csv(PUBLIC_SUMMARY, [{
+        "benchmark_version": "retrieval_eval_v1",
+        "validator_version": "v1.1",
+        "validation_scope": args.scope,
+        "expected_rows": 12 if args.scope == "pilot" else "",
+        "selected_rows": len(audit),
+        "verified_rows": len(verified),
+        "pass_count": status_counts["pass"],
+        "review_count": status_counts["review"],
+        "error_count": status_counts["error"],
+        "single_chunk_count": scope_counts["single_chunk"],
+        "multi_chunk_count": scope_counts["multi_chunk"],
+        "no_gold_count": scope_counts["no_gold"],
+        "cross_source_count": cross_source,
+        "topic_distribution": json.dumps(
+            dict(sorted(topic_counts.items())),
+            ensure_ascii=False,
+            separators=(",", ":"),
+        ),
+        "benchmark_status": benchmark_status,
+        "global_issues": "; ".join(global_issues),
+    }])
 
-    write_csv(
-        PUBLIC_SUMMARY_PATH,
-        summary_rows,
-    )
-
-    print("\nRetrieval benchmark validation")
+    print("\nRetrieval benchmark validation v1.1")
     print("=" * 88)
     print(
-        f"Scope: {args.scope}; "
-        f"verified rows: {len(audit_rows)}"
+        f"Scope: {args.scope}; selected rows: {len(audit)}; "
+        f"verified rows: {len(verified)}"
     )
-    print(
-        f"Status counts: "
-        f"{dict(status_counts)}"
-    )
-    print(
-        f"Evidence scopes: "
-        f"{dict(scope_counts)}"
-    )
-    print(f"Local audit: {LOCAL_AUDIT_PATH}")
-    print(
-        f"Public summary: "
-        f"{PUBLIC_SUMMARY_PATH}"
-    )
+    print(f"Status counts: {dict(status_counts)}")
+    print(f"Evidence scopes: {dict(scope_counts)}")
+    print(f"Cross-source rows: {cross_source}")
+    if global_issues:
+        print("Global issues: " + "; ".join(global_issues))
+    print(f"Local audit: {LOCAL_AUDIT}")
+    print(f"Public summary: {PUBLIC_SUMMARY}")
     print("=" * 88)
 
-    if status_counts["error"] > 0:
+    if benchmark_status == "error":
         raise SystemExit(1)
-
-
-def json_compact(counter: Counter[str]) -> str:
-    import json
-    return json.dumps(
-        dict(sorted(counter.items())),
-        ensure_ascii=False,
-        separators=(",", ":"),
-    )
 
 
 if __name__ == "__main__":
