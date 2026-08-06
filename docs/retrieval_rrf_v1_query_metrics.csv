@@ -1,0 +1,13 @@
+﻿run_id,query_id,answerability,gold_count,support_count,first_gold_rank,first_relevant_rank,hit_at_1,hit_at_3,hit_at_5,recall_at_5,top1_chunk_id
+bm25_qwen3_rrf_v1,RET-001,answerable,2,0,1,1,1.0,1.0,1.0,1.0,SRC001-T002-KNEE-SIGNS
+bm25_qwen3_rrf_v1,RET-002,answerable,1,1,6,6,0.0,0.0,0.0,0.0,SRC003-QR-019-020-C01
+bm25_qwen3_rrf_v1,RET-003,answerable,1,3,1,1,1.0,1.0,1.0,1.0,SRC001-T003-KNEE-DIAGNOSIS
+bm25_qwen3_rrf_v1,RET-004,answerable,1,2,5,1,0.0,0.0,1.0,1.0,SRC001-T003-KNEE-DIAGNOSIS
+bm25_qwen3_rrf_v1,RET-005,answerable,1,3,1,1,1.0,1.0,1.0,1.0,SRC001-T003-KNEE-DIAGNOSIS
+bm25_qwen3_rrf_v1,RET-006,answerable,3,2,1,1,1.0,1.0,1.0,0.666667,SRC003-QR-022-023-C01
+bm25_qwen3_rrf_v1,RET-007,answerable,1,1,2,1,0.0,1.0,1.0,1.0,SRC003-QR-022-023-C02
+bm25_qwen3_rrf_v1,RET-008,answerable,1,1,1,1,1.0,1.0,1.0,1.0,SRC001-SEC-023-C01
+bm25_qwen3_rrf_v1,RET-009,answerable,1,2,1,1,1.0,1.0,1.0,1.0,SRC003-QR-027-031-C01
+bm25_qwen3_rrf_v1,RET-010,answerable,1,1,1,1,1.0,1.0,1.0,1.0,SRC003-QR-014-015-C01
+bm25_qwen3_rrf_v1,RET-011,answerable,2,2,1,1,1.0,1.0,1.0,1.0,SRC003-QR-027-029-C01
+bm25_qwen3_rrf_v1,RET-012,unanswerable,0,0,,,,,,,SRC003-QR-017-018-C01

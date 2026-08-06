@@ -1,0 +1,7 @@
+{
+  "run_id": "bm25_qwen3_rrf_v1",
+  "benchmark_version": "retrieval_eval_v1_pilot_frozen",
+  "rrf_k": 60,
+  "input_depth": 10,
+  "output_top_k": 10
+}

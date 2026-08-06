@@ -432,3 +432,96 @@ GitHub公开仓库保存：
 - 只有执行`git push`后才算上传到GitHub；
 - 正式进入下一阶段前运行项目资产审计，确认必要公开文件已跟踪、已提交且本地分支已推送。
 
+## RET-006 query boundary revision
+
+原问题：
+“不想吃药的话，有哪些其他治疗方法呢？”
+
+问题范围过宽，导致检索结果混入药物治疗、手术治疗等多个分支。
+
+修改为：
+“不想吃药，膝骨关节炎的基础治疗包括哪些措施？”
+
+并重新审核证据范围。
+
+最终定义：
+- Gold:
+  - SRC003-QR-022-023-C01
+  - SRC003-QR-022-023-C02
+- Source:
+  - SRC003
+- Evidence scope:
+  - multi_chunk
+
+该修改用于提高Benchmark标签稳定性，而非优化检索性能。
+
+## D-014：冻结Retrieval Pilot Benchmark
+
+**决策：**
+
+冻结当前12条Retrieval Pilot Benchmark，版本标记为
+`retrieval_eval_v1_pilot_frozen`。
+
+Pilot包含：
+
+- 11条可回答问题；
+- 1条不可回答问题；
+- 8条单证据问题；
+- 3条多证据问题；
+- 1条无Gold问题；
+- 1条跨来源问题。
+
+RET-006在检索错误分析后由宽泛的：
+
+> 不想吃药的话，有哪些其他治疗方法呢？
+
+收窄为：
+
+> 不想吃药，膝骨关节炎的基础治疗包括哪些措施？
+
+RET-006最终定义为跨来源、多Chunk问题。
+
+Gold证据为：
+
+- `SRC003-QR-022-023-C01`
+- `SRC003-QR-022-023-C02`
+- `SRC001-SEC-018-C01`
+
+来源范围为：
+
+- `SRC001`
+- `SRC003`
+
+冻结后不得根据BM25、Dense或Hybrid排名表现继续修改Query、
+Gold或Support。若发现事实性标注错误，应创建新的Benchmark版本，
+并重新运行全部检索基线。
+
+## D-015：Dense作为MVP默认检索器
+
+**实验结果：**
+
+在冻结的Retrieval Pilot Benchmark上：
+
+| Retriever | Hit@1 | Hit@3 | Hit@5 | Recall@5 | MRR@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 0.7273 | 0.8182 | 0.8182 | 0.7424 | 0.7857 |
+| Qwen3 Dense | 0.8182 | 1.0000 | 1.0000 | 0.9697 | 0.8939 |
+| BM25 + Dense RRF | 0.7273 | 0.8182 | 0.9091 | 0.8788 | 0.8061 |
+
+**决策：**
+
+MVP阶段采用`Qwen3-Embedding-0.6B` Dense Retrieval作为默认检索器。
+
+BM25保留为可复现的词法检索基线；等权RRF保留为Hybrid消融实验，
+但不作为默认方案。
+
+**原因：**
+
+RRF在RET-002中将Dense排名第1的Gold降至第6，并在RET-004中将
+Gold由第3降至第5，说明BM25噪声会通过等权排名融合削弱Dense结果。
+
+RET-006的第三个Gold没有进入BM25和Dense的Top 10，因此当前RRF无法
+解决该证据缺失问题。
+
+后续只有在扩展Benchmark完成后，才重新评估加权融合、候选深度扩展
+或其他Hybrid策略，避免在12条开发Pilot上过拟合。

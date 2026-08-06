@@ -1,0 +1,2 @@
+﻿run_id,benchmark_version,retriever,rrf_k,input_depth,output_top_k,evaluated_answerable_queries,reported_unanswerable_queries,hit_at_1,hit_at_3,hit_at_5,recall_at_5,mrr_at_10,relevant_hit_at_1,relevant_hit_at_3,relevant_hit_at_5
+bm25_qwen3_rrf_v1,retrieval_eval_v1_pilot_frozen,reciprocal_rank_fusion,60,10,10,11,1,0.727273,0.818182,0.909091,0.878788,0.806061,0.909091,0.909091,0.909091
