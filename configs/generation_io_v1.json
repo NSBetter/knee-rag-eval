@@ -1,0 +1,49 @@
+{
+  "contract_version": "generation_io_v1",
+  "generation_input": {
+    "required_fields": [
+      "run_id",
+      "query_id",
+      "query",
+      "answerability",
+      "retrieval_run_id",
+      "top_k",
+      "evidence"
+    ],
+    "evidence_fields": [
+      "rank",
+      "chunk_id",
+      "source_id",
+      "title_path",
+      "score",
+      "text",
+      "text_sha256"
+    ]
+  },
+  "generation_output": {
+    "required_fields": [
+      "run_id",
+      "query_id",
+      "query",
+      "answerability",
+      "retrieval_run_id",
+      "top_k",
+      "evidence",
+      "generator_model",
+      "prompt_version",
+      "answer",
+      "generation_status"
+    ]
+  },
+  "forbidden_generation_input_fields": [
+    "gold_chunk_ids",
+    "supporting_chunk_ids",
+    "is_gold",
+    "is_support"
+  ],
+  "notes": [
+    "Evidence text is joined from gold_corpus_v1_3 by retrieved_chunk_id.",
+    "Gold and support labels are excluded from generation input to prevent evaluation leakage.",
+    "Evaluation labels may be joined back only after answer generation."
+  ]
+}

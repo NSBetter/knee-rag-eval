@@ -556,3 +556,58 @@ cat >> DECISIONS.md <<'EOF'
 受限来源文本。迁移前后Gold Corpus及相关构建产物的SHA-256保持一致，
 因此该调整不改变已冻结Retrieval实验所使用的语料内容。
 EOF
+
+## D-017：冻结Generation + Automated Evaluation MVP v1
+
+**决策：**
+
+在12条冻结Retrieval Pilot Benchmark上跑通Generation + Automated
+Evaluation完整闭环后，将当前实现冻结为MVP v1。
+
+当前v1流水线为：
+
+1. 使用Qwen3 Dense Retrieval的Top-5结果；
+2. 根据`retrieved_chunk_id`回查Gold Corpus正文；
+3. 构建不包含Gold/Support标签的Generation输入；
+4. 使用`generation_prompt_v1`和DeepSeek V4 Flash生成回答；
+5. 使用确定性规则检查生成成功、非空回答、Evidence数量和
+   unanswerable基本行为；
+6. 使用DeepSeek V4 Pro作为LLM-as-a-Judge，对Relevance、
+   Groundedness、Completeness、Unsupported Claim和
+   Unanswerable Behavior进行结构化评测；
+7. 自动筛选边界案例进入人工医学复核；
+8. 使用人工复核结果校准LLM Judge。
+
+**Pilot结果：**
+
+- Generation成功：12 / 12；
+- Deterministic Rules通过：12 / 12；
+- LLM Judge成功：12 / 12；
+- Judge判定pass：12 / 12；
+- 检测到Unsupported Claim：1条；
+- 自动进入人工复核：2条（RET-002、RET-012）；
+- 首批Human Calibration：2条；
+- Judge-Human逐字段一致：10 / 10。
+
+**关键边界：**
+
+Generation输入不得包含`gold_chunk_ids`、`supporting_chunk_ids`、
+`is_gold`或`is_support`等评测标签，避免Generation阶段发生
+Gold Label Leakage。
+
+LLM Judge不是最终Gold标准。人工医学复核结果作为Judge Calibration
+参照。
+
+当前仅有2条Human Calibration样本，因此10 / 10字段一致只能证明
+Judge在这两个边界案例上与人工一致，不能证明Judge已具备充分的
+泛化可靠性。
+
+**后续策略：**
+
+不继续针对当前12条Pilot优化Judge或Generation Prompt。
+
+当前12条Pilot保留为Development / Smoke Test集合。下一阶段优先扩展
+Benchmark，在新的问题上运行不修改的Evaluator v1，根据新的错误案例
+和Judge-Human分歧再决定是否开发Evaluator v2。
+
+该策略用于降低评测器对当前小规模Pilot的过拟合风险。

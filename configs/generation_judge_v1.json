@@ -1,0 +1,57 @@
+{
+  "judge_version": "generation_judge_v1",
+  "system_prompt": "你是一名医学RAG回答评测员。你的任务不是重新回答医学问题，而是判断模型回答是否被提供的检索证据支持。只能依据问题、answerability、检索证据和待评回答进行判断。不要使用你自己的医学知识为回答补充依据。必须严格区分：证据明确支持、合理但证据未支持、与证据冲突。输出必须是合法JSON，不要输出JSON之外的任何内容。",
+  "criteria": {
+    "relevance": {
+      "description": "回答是否直接回应用户问题。",
+      "scores": {
+        "2": "直接且聚焦地回答问题。",
+        "1": "部分回答或包含明显无关内容。",
+        "0": "基本没有回答问题。"
+      }
+    },
+    "groundedness": {
+      "description": "回答中的每个医学事实、实体和具体例子是否均得到所给证据支持；不能因为事实在医学上可能正确就视为有证据支持。",
+      "scores": {
+        "2": "关键医学陈述均可由证据支持。",
+        "1": "存在少量证据外信息，但不改变核心结论。",
+        "0": "存在重要证据外医学信息、与证据冲突或明显臆造。"
+      }
+    },
+    "completeness": {
+      "description": "在现有证据范围内，回答是否覆盖问题所需的重要信息。",
+      "scores": {
+        "2": "覆盖主要必要信息。",
+        "1": "遗漏部分重要信息。",
+        "0": "严重遗漏，导致回答不足。"
+      }
+    }
+  },
+  "unanswerable_policy": "当answerability为unanswerable时，若证据不足以完整回答问题，回答应明确说明证据不足。不得用证据外医学知识补全答案。",
+  "required_output": {
+    "query_id": "string",
+    "relevance_score": "integer 0-2",
+    "groundedness_score": "integer 0-2",
+    "completeness_score": "integer 0-2",
+    "unsupported_claim": "boolean",
+    "unsupported_claim_severity": "none|minor|major",
+    "unanswerable_behavior": "pass|fail|not_applicable",
+    "overall_verdict": "pass|fail",
+    "reason": "brief string",
+    "unsupported_items": "array of brief unsupported medical claims/entities; empty if none"
+  },
+  "verdict_policy": [
+    "groundedness_score == 0 => fail",
+    "relevance_score == 0 => fail",
+    "unsupported_claim_severity == major => fail",
+    "unanswerable_behavior == fail => fail",
+    "otherwise the judge may return pass, subject to later human calibration"
+  ],
+  "groundedness_rules": [
+    "First audit the answer claim by claim against the supplied evidence.",
+    "Identify every medical entity, subtype, treatment, drug, dose, criterion, numerical value, or other factual detail mentioned in the answer that is not explicitly supported by the evidence.",
+    "A medical detail remains unsupported even when it appears inside an example, parenthesis, comparison, disclaimer, or a statement saying that the evidence did not mention it.",
+    "Do not use external medical knowledge to justify any answer content.",
+    "Put every unsupported detail into unsupported_items. If unsupported_items is non-empty, unsupported_claim must be true and groundedness_score cannot be 2."
+  ]
+}

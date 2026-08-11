@@ -4,22 +4,36 @@
 
 ## 1. Current phase
 
-Retrieval evaluation phase is functionally complete.
+Retrieval evaluation is complete and committed.
 
-The project is preparing to transition from:
+Generation + automated evaluation MVP v1 is now functionally complete on the
+12-query frozen Pilot Benchmark.
+
+Completed pipeline:
 
 Retrieval Benchmark
-→ Retrieval baseline comparison
-→ Default retriever selection
+→ Qwen3 Dense Retrieval
+→ Generation input construction
+→ DeepSeek V4 Flash answer generation
+→ Deterministic rule evaluation
+→ DeepSeek V4 Pro LLM-as-a-Judge
+→ Human medical calibration
 
-to:
+Current Pilot results:
 
-Generation pipeline
-→ Automated answer evaluation
-→ Version regression evaluation
+- Generation: 12 / 12 successful
+- Deterministic evaluation: 12 / 12 passed
+- LLM Judge: 12 / 12 successful
+- Judge pass: 12 / 12
+- Unsupported claims detected: 1
+- Manual-review cases: 2
+- Human calibration cases: 2
+- Judge-Human field agreement: 10 / 10
 
-Do not start generation/evaluation development until the current retrieval artifacts
-have been audited and committed.
+The 2-case calibration set is too small to establish general Judge reliability.
+Do not continue tuning the Judge against the current 12-query Pilot. Freeze the
+current evaluation MVP as v1 and expand the Benchmark before further evaluator
+iteration.
 
 ---
 
@@ -119,46 +133,37 @@ away on the frozen Pilot.
 
 ## 8. Current development gate
 
-Before starting the generation pipeline:
+Generation + automated evaluation MVP v1 has completed its first end-to-end
+Pilot run.
 
-1. audit the current uncommitted retrieval-related files;
-2. determine which files are valid final artifacts;
-3. remove or archive temporary artifacts if needed;
-4. commit the completed Retrieval stage;
-5. create and verify `RUNBOOK.md`.
+Before implementing evaluator v2 or changing the current Judge rubric:
 
-Only after this gate is complete should development move to generation and automated
-answer evaluation.
+1. document and freeze the current Generation/Evaluation MVP v1;
+2. preserve the current 12-query Pilot as a development and smoke-test set;
+3. expand the evaluation Benchmark with additional question types, difficulty,
+   evidence scopes, and unanswerable cases;
+4. run the frozen evaluator v1 on the expanded Benchmark;
+5. use new error analysis and human medical calibration to justify v2 changes.
+
+This gate is intended to reduce overfitting to the current 12-query Pilot.
 
 ---
 
 ## 9. Next planned development phase
 
-Generation + automated evaluation MVP.
+Benchmark expansion and evaluator generalization validation.
 
-Planned high-level sequence:
+The next stage should prioritize adding new evaluation cases rather than
+continuing to optimize the current Judge on the existing Pilot.
 
-1. define generation input/output contract;
-2. run Dense retrieval for benchmark questions;
-3. send retrieved evidence to the generation model;
-4. save model answer and full run metadata;
-5. add deterministic / rule-based evaluation;
-6. add LLM-as-a-Judge evaluation;
-7. calibrate automated evaluation against manual medical review;
-8. compare model / prompt versions and generate regression reports.
+Planned sequence:
 
-This section is a roadmap only. Development should proceed one verified step at a time.
-
----
-
-## 10. Source of truth
-
-For future development conversations:
-
-- `PROJECT_STATE.md` = current project status
-- `DECISIONS.md` = accepted design decisions and their rationale
-- `RUNBOOK.md` = verified commands only
-- Git history = implementation history
-- generated experiment artifacts = empirical evidence
-
-Chat history should not override these repository records.
+1. freeze the current Generation + Evaluation MVP as v1;
+2. define the expanded Benchmark composition;
+3. add and medically review new evaluation questions;
+4. run the unchanged v1 pipeline on the expanded Benchmark;
+5. collect Judge-Human disagreements and other failure cases;
+6. perform error analysis;
+7. introduce evaluator v2 only when new evidence supports a change;
+8. later compare model, prompt, retriever, and evaluator versions through
+   regression runs.
