@@ -1,0 +1,15 @@
+{
+  "benchmark_version": "retrieval_eval_v1_pilot_frozen",
+  "scope": "pilot",
+  "source_path": "data/benchmark/retrieval_eval_v1.csv",
+  "frozen_path": "data/benchmark/frozen/retrieval_eval_v1_pilot_frozen.csv",
+  "manifest_path": "data/benchmark/frozen/retrieval_eval_v1_pilot_manifest.json",
+  "public_manifest_path": "docs/retrieval_benchmark_v1_frozen_manifest.csv",
+  "required_selected_rows": 12,
+  "required_verified_rows": 12,
+  "minimum_multi_chunk_rows": 2,
+  "minimum_no_gold_rows": 1,
+  "minimum_cross_source_rows": 1,
+  "cross_source_policy": "required_in_frozen_pilot",
+  "policy_note": "The frozen pilot includes one genuine cross-source multi-chunk query. Cross-source Gold evidence must remain clinically and semantically necessary."
+}

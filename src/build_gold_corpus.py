@@ -26,6 +26,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs" / "gold_corpus_v1_3.json"
 CLEANUP_CONFIG_PATH = ROOT / "configs" / "gold_corpus_cleanup_v1_3.json"
+RECOMMENDATION_OVERRIDE_PATH = (
+    ROOT / "data" / "processed" / "private"
+    / "gold_corpus_recommendation_overrides_v1_3.json"
+)
 STRUCTURE_PATH = ROOT / "docs" / "document_structure_map.csv"
 BOUNDARY_PATH = ROOT / "docs" / "document_boundaries.csv"
 STRUCTURE_REPORT = ROOT / "docs" / "document_structure_validation.csv"
@@ -167,6 +171,50 @@ def load_cleanup_config() -> dict[str, Any]:
     raw.setdefault("high_risk_review_node_ids", [])
     raw.setdefault("allowed_missing_manual_evidence", [])
     raw.setdefault("recommendation_context_overrides", {})
+    raw.setdefault("required_recommendation_context_override_ids", [])
+
+    public_overrides = raw["recommendation_context_overrides"]
+    if not isinstance(public_overrides, dict):
+        raise ValueError(
+            "recommendation_context_overrides must be a JSON object."
+        )
+
+    required_override_ids = [
+        str(node_id)
+        for node_id in raw["required_recommendation_context_override_ids"]
+    ]
+
+    if required_override_ids and not RECOMMENDATION_OVERRIDE_PATH.exists():
+        raise FileNotFoundError(
+            "Required local recommendation overrides not found: "
+            f"{RECOMMENDATION_OVERRIDE_PATH}"
+        )
+
+    if RECOMMENDATION_OVERRIDE_PATH.exists():
+        private_raw = json.loads(
+            RECOMMENDATION_OVERRIDE_PATH.read_text(encoding="utf-8")
+        )
+        private_overrides = private_raw.get(
+            "recommendation_context_overrides",
+            {},
+        )
+        if not isinstance(private_overrides, dict):
+            raise ValueError(
+                "Private recommendation_context_overrides "
+                "must be a JSON object."
+            )
+        public_overrides.update(private_overrides)
+
+    missing_override_ids = [
+        node_id
+        for node_id in required_override_ids
+        if not str(public_overrides.get(node_id, "")).strip()
+    ]
+    if missing_override_ids:
+        raise ValueError(
+            "Missing required recommendation overrides: "
+            + ", ".join(missing_override_ids)
+        )
 
     allowed_operations = {
         "remove_between",

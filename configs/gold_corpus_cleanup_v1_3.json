@@ -1,0 +1,140 @@
+{
+  "content_anchor_node_ids": [
+    "SRC003-S01"
+  ],
+  "display_title_overrides": {
+    "SRC001-S04-SS03": "3. 炎症反应"
+  },
+  "source_tail_stop_markers": {
+    "SRC001": [
+      {
+        "rule_id": "SRC001-stop-before-conflict-statement",
+        "page": 10,
+        "marker": "利益冲突",
+        "required": true
+      }
+    ]
+  },
+  "allowed_missing_manual_evidence": [
+    "SRC001-S07"
+  ],
+  "high_risk_review_node_ids": [
+    "SRC001-S02",
+    "SRC001-S04-SS04",
+    "SRC001-S08-SS01-T03",
+    "SRC001-S08-SS03",
+    "SRC001-S08-SS04-T02",
+    "SRC001-S08-SS04-T03",
+    "SRC001-S08-SS04-T05",
+    "SRC001-S08-SS05-T01",
+    "SRC001-S08-SS06-T02",
+    "SRC001-S08-SS06-T03",
+    "SRC001-S08-SS06-T04",
+    "SRC001-S08-SS07",
+    "SRC001-S08-SS07-T01",
+    "SRC001-S08-SS07-T01-N01",
+    "SRC001-S08-SS07-T01-N02",
+    "SRC001-S08-SS07-T02",
+    "SRC001-S08-SS08",
+    "SRC001-S08-SS08-T01",
+    "SRC001-S08-SS08-T02",
+    "SRC001-S08-SS08-T03",
+    "SRC001-S08-SS08-T04",
+    "SRC003-S01",
+    "SRC003-S03-Q04",
+    "SRC003-S03-Q08",
+    "SRC003-S03-Q14"
+  ],
+  "node_cleanup_rules": {
+    "SRC001-S02": [
+      {
+        "rule_id": "remove-interleaved-methods-table-from-overview",
+        "operation": "remove_between",
+        "start": "Kunming City, Yunnan Province 650032, China;",
+        "end": "50% 以下专家组成员同意",
+        "required": true
+      }
+    ],
+    "SRC001-S04-SS04": [
+      {
+        "rule_id": "remove-tail-of-evidence-grade-table",
+        "operation": "remove_between",
+        "start": "中等质量(B)",
+        "end": "没有明确推荐意见(3)",
+        "required": true
+      }
+    ],
+    "SRC001-S08-SS01-T03": [
+      {
+        "rule_id": "remove-tables-and-figures-from-moderate-stage",
+        "operation": "remove_between",
+        "start": "表2常见骨关节炎的临床表现",
+        "end": "图2骨关节炎阶梯化治疗",
+        "required": true
+      }
+    ],
+    "SRC001-S08-SS03": [
+      {
+        "rule_id": "keep-clean-physical-therapy-introduction",
+        "operation": "trim_after",
+        "marker": "见表7。",
+        "include_marker": true,
+        "required": true
+      }
+    ],
+    "SRC001-S08-SS04-T02": [
+      {
+        "rule_id": "remove-tail-of-topical-drug-table",
+        "operation": "remove_between",
+        "start": "OA 适用范围 注意事项",
+        "end": "即为玻璃酸钠",
+        "keep_end": true,
+        "required": true
+      },
+      {
+        "rule_id": "remove-oral-drug-and-physical-therapy-tables",
+        "operation": "remove_between",
+        "start": "药物用量 表6骨关节炎口服药物治疗推荐",
+        "end": "注：KOA 为膝关节骨关节炎",
+        "required": true
+      }
+    ],
+    "SRC001-S08-SS04-T03": [
+      {
+        "rule_id": "remove-interleaved-physical-therapy-table",
+        "operation": "remove_between",
+        "start": "电疗法［74］",
+        "end": "B B B B B B B",
+        "required": true
+      },
+      {
+        "rule_id": "restore-prp-sentence-token-order",
+        "operation": "regex_replace",
+        "pattern": "改善膝\\s*［100］（证据等级：A；推荐\\s*关节功能，延缓病情\\s*强度：1）。",
+        "replacement": "改善膝关节功能，延缓病情［100］（证据等级：A；推荐强度：1）。",
+        "required": true
+      }
+    ],
+    "SRC003-S03-Q14-R04": [
+      {
+        "rule_id": "remove-general-consensus-conclusion-from-recommendation-27",
+        "operation": "trim_after",
+        "marker": "本共识立足于我国本土",
+        "include_marker": false,
+        "required": true
+      }
+    ]
+  },
+  "_notes": [
+    "All cleanup rules operate after page extraction and node slicing.",
+    "Rules only remove or reorder text already present in the source extraction.",
+    "SRC001-S07 remains explicitly missing manual table evidence in MVP v1.2 and must appear in diagnostics.",
+    "v1.3 uses three human-reviewed recommendation-context overrides stored in a local restricted file under data/processed/private; source-derived override text is not stored in the public config."
+  ],
+  "recommendation_context_overrides": {},
+  "required_recommendation_context_override_ids": [
+    "SRC003-S03-Q02-R01",
+    "SRC003-S03-Q04-R01",
+    "SRC003-S03-Q08-R01"
+  ]
+}

@@ -4,7 +4,7 @@ bm25_char_bigram_v1,pilot,RET-002,answerable,1,,0,0,0,0.0,22.993512,SRC003-QR-01
 bm25_char_bigram_v1,pilot,RET-003,answerable,1,1,1,1,1,1.0,19.879284,SRC001-T003-KNEE-DIAGNOSIS
 bm25_char_bigram_v1,pilot,RET-004,answerable,1,7,0,0,0,0.0,25.625624,SRC003-SEC-001-C01
 bm25_char_bigram_v1,pilot,RET-005,answerable,1,1,1,1,1,1.0,56.644671,SRC001-T003-KNEE-DIAGNOSIS
-bm25_char_bigram_v1,pilot,RET-006,answerable,2,1,1,1,1,0.5,17.879678,SRC003-QR-022-023-C01
+bm25_char_bigram_v1,pilot,RET-006,answerable,3,1,1,1,1,0.666667,39.466199,SRC003-QR-022-023-C01
 bm25_char_bigram_v1,pilot,RET-007,answerable,1,2,0,1,1,1.0,37.064939,SRC003-QR-022-023-C02
 bm25_char_bigram_v1,pilot,RET-008,answerable,1,1,1,1,1,1.0,89.114895,SRC001-SEC-023-C01
 bm25_char_bigram_v1,pilot,RET-009,answerable,1,1,1,1,1,1.0,90.266901,SRC003-QR-027-031-C01

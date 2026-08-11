@@ -525,3 +525,34 @@ RET-006的第三个Gold没有进入BM25和Dense的Top 10，因此当前RRF无法
 
 后续只有在扩展Benchmark完成后，才重新评估加权融合、候选深度扩展
 或其他Hybrid策略，避免在12条开发Pilot上过拟合。
+
+cat >> DECISIONS.md <<'EOF'
+
+## D-016：受限Recommendation Override与公开配置分离
+
+**决策：**
+
+`gold_v1_3`中的人工核验Recommendation Override采用公开规则与
+本地受限文本分离的方式管理。
+
+公开仓库中的`configs/gold_corpus_cleanup_v1_3.json`仅保存：
+
+- 清理和构建规则；
+- 必需的Recommendation Override节点ID。
+
+具体的人工核验指南文本保存在：
+
+`data/processed/private/gold_corpus_recommendation_overrides_v1_3.json`
+
+该路径由Git忽略，不进入公开仓库。
+
+`build_gold_corpus.py`在构建时加载并合并本地Override；若必需的本地
+文件或对应节点缺失，则立即终止构建，避免生成内容不完整但版本号仍为
+`gold_v1_3`的Corpus。
+
+**原因：**
+
+该设计保持Gold Corpus构建逻辑可审计，同时避免在公开配置中直接保存
+受限来源文本。迁移前后Gold Corpus及相关构建产物的SHA-256保持一致，
+因此该调整不改变已冻结Retrieval实验所使用的语料内容。
+EOF

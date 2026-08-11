@@ -1,0 +1,20 @@
+{
+  "benchmark_version": "retrieval_eval_v1_pilot_frozen",
+  "scope": "pilot",
+  "source_path": "data/benchmark/retrieval_eval_v1.csv",
+  "frozen_path": "data/benchmark/frozen/retrieval_eval_v1_pilot_frozen.csv",
+  "sha256": "76d4b497c0910d822ab481fe1fe88e71212c7f2458e8850d695ae3f01bb6199c",
+  "frozen_at_utc": "2026-08-06T01:59:21.059411+00:00",
+  "selected_rows": 12,
+  "verified_rows": 12,
+  "answerable_rows": 11,
+  "unanswerable_rows": 1,
+  "single_chunk_rows": 8,
+  "multi_chunk_rows": 3,
+  "no_gold_rows": 1,
+  "cross_source_rows": 1,
+  "cross_source_policy": "required_in_frozen_pilot",
+  "policy_note": "The frozen pilot includes one genuine cross-source multi-chunk query. Cross-source Gold evidence must remain clinically and semantically necessary.",
+  "corpus_path": "data/processed/gold_corpus/gold_corpus_v1_3.csv",
+  "corpus_sha256": "ba237fb0eadd57082443eb923e0c8004488ce908e345ca28bd7dcd1ba98516d5"
+}

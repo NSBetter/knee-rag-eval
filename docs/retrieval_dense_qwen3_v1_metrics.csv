@@ -1,2 +1,2 @@
 ﻿run_id,scope,corpus_version,benchmark_version,retriever,model_name,query_prompt_name,device,embedding_dimension,max_seq_length,evaluated_answerable_queries,reported_unanswerable_queries,hit_at_1,hit_at_3,hit_at_5,recall_at_5,mrr_at_10,relevant_hit_at_1,relevant_hit_at_3,relevant_hit_at_5,corpus_embedding_cache,python_version
-qwen3_embedding_0_6b_dense_v1,pilot,gold_v1_3,retrieval_eval_v1,dense_cosine_exact,models/Qwen3-Embedding-0.6B,query,mps,1024,2048,11,1,0.727273,0.909091,0.909091,0.909091,0.80303,0.909091,0.909091,0.909091,built,3.12.13
+qwen3_embedding_0_6b_dense_v1,pilot,gold_v1_3,retrieval_eval_v1,dense_cosine_exact,models/Qwen3-Embedding-0.6B,query,mps,1024,2048,11,1,0.818182,1.0,1.0,0.969697,0.893939,1.0,1.0,1.0,loaded,3.12.13
